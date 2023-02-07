@@ -1,0 +1,14 @@
+package me.matvienkoeg.recipeapp.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class Ingredient {
+
+    private String name;
+    private int productQuantity;
+    private String unitMeasurement;
+
+}

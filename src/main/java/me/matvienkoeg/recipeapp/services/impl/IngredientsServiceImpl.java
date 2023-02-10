@@ -33,5 +33,23 @@ public class IngredientsServiceImpl implements IngredientsService {
     public Optional<Ingredient> getBiId(Long id) {
         return Optional.ofNullable(ingredients.get(lastId));
     }
+
+    @Override
+    public Ingredient upDate(Long id, Ingredient ingredient) {
+        if (!validationService.validate(ingredient)) {
+            throw new ValidationException(ingredient.toString());
+        }
+        return ingredients.replace(lastId, ingredient);
+    }
+
+    @Override
+    public Ingredient delete(Long id) {
+        return ingredients.remove(lastId);
+    }
+
+    @Override
+    public Map<Long, Ingredient> getAll() {
+        return ingredients;
+    }
 }
 

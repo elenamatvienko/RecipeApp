@@ -1,8 +1,8 @@
 package me.matvienkoeg.recipeapp.services;
 
 import me.matvienkoeg.recipeapp.model.Ingredient;
-import me.matvienkoeg.recipeapp.model.Recipe;
 
+import java.util.Map;
 import java.util.Optional;
 
 public interface IngredientsService {
@@ -10,6 +10,12 @@ public interface IngredientsService {
     Ingredient addIngredient(Ingredient ingredient);
 
     Optional<Ingredient> getBiId(Long id);
+
+    Ingredient upDate(Long id, Ingredient ingredient);
+
+    Ingredient delete(Long id);
+
+    Map<Long, Ingredient> getAll();
 }
 
 

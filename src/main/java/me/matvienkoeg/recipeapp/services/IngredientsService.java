@@ -1,10 +1,15 @@
 package me.matvienkoeg.recipeapp.services;
 
 import me.matvienkoeg.recipeapp.model.Ingredient;
+import me.matvienkoeg.recipeapp.model.Recipe;
+
+import java.util.Optional;
 
 public interface IngredientsService {
 
-    void addIngredient(Ingredient ingredient);
-    Ingredient getIngredient(Long id);
+    Ingredient addIngredient(Ingredient ingredient);
 
+    Optional<Ingredient> getBiId(Long id);
 }
+
+

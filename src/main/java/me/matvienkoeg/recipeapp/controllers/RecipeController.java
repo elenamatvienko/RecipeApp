@@ -1,28 +1,27 @@
 package me.matvienkoeg.recipeapp.controllers;
 
+import me.matvienkoeg.recipeapp.model.Recipe;
 import me.matvienkoeg.recipeapp.services.RecipeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/recipe")
 public class RecipeController {
 
-    private RecipeService recipeService;
+    private final RecipeService recipeService;
 
     public RecipeController(RecipeService recipeService) {
+
         this.recipeService = recipeService;
     }
 
-    @GetMapping("/add")
-    public String recipeAdd() {
-        return recipeService.getRecipeAdd();
+    @PostMapping
+    public ResponseEntity<Recipe> addRecipe (@RequestBody Recipe recipe) {
+        return ResponseEntity.ok(recipeService.addRecipe(recipe));
     }
-
-    @GetMapping("/get")
-    public String recipeGet() {
-        return recipeService.getRecipeGet();
+    @GetMapping("/{id}")
+    public ResponseEntity<Recipe> getByID (@PathVariable Long id){
+        return ResponseEntity.of(recipeService.getBiId(id));
     }
-
 }

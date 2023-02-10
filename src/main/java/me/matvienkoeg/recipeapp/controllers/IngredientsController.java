@@ -1,29 +1,30 @@
 package me.matvienkoeg.recipeapp.controllers;
 
+import me.matvienkoeg.recipeapp.model.Ingredient;
+import me.matvienkoeg.recipeapp.model.Recipe;
 import me.matvienkoeg.recipeapp.services.IngredientsService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/ingredient")
 
 public class IngredientsController {
 
-        private IngredientsService ingredientsService;
+    private final IngredientsService ingredientsService;
 
     public IngredientsController(IngredientsService ingredientsService) {
         this.ingredientsService = ingredientsService;
     }
 
-    @GetMapping("/addIng")
-        public String recipeAdd() {
-            return ingredientsService.getIngredientAdd();
-        }
 
-        @GetMapping("/getIng")
-        public String recipeGet() {
-            return ingredientsService.getIngredientGet();
-        }
-
+    @PostMapping
+    public ResponseEntity<Ingredient> addIngredient (@RequestBody Ingredient ingredient) {
+        return ResponseEntity.ok(ingredientsService.addIngredient(ingredient));
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<Ingredient> getByID (@PathVariable Long id){
+        return ResponseEntity.of(ingredientsService.getBiId(id));
+    }
+
+}

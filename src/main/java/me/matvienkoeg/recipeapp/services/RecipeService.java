@@ -2,9 +2,11 @@ package me.matvienkoeg.recipeapp.services;
 
 import me.matvienkoeg.recipeapp.model.Recipe;
 
+import java.util.Optional;
+
 public interface RecipeService {
 
-    void addRecipe(Recipe recipe);
+    Recipe addRecipe(Recipe recipe);
 
-    Recipe getRecipe(Long id);
+    Optional <Recipe> getBiId(Long id);
 }

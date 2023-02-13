@@ -30,12 +30,12 @@ public class IngredientsServiceImpl implements IngredientsService {
     }
 
     @Override
-    public Optional<Ingredient> getBiId(Long id) {
+    public Optional<Ingredient> getBiId(Long lastId) {
         return Optional.ofNullable(ingredients.get(lastId));
     }
 
     @Override
-    public Ingredient upDate(Long id, Ingredient ingredient) {
+    public Ingredient upDate(Long lastId, Ingredient ingredient) {
         if (!validationService.validate(ingredient)) {
             throw new ValidationException(ingredient.toString());
         }
@@ -43,7 +43,7 @@ public class IngredientsServiceImpl implements IngredientsService {
     }
 
     @Override
-    public Ingredient delete(Long id) {
+    public Ingredient delete(Long lastId) {
         return ingredients.remove(lastId);
     }
 

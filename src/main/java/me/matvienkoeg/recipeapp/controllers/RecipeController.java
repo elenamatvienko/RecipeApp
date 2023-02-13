@@ -1,6 +1,11 @@
 package me.matvienkoeg.recipeapp.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import me.matvienkoeg.recipeapp.model.Recipe;
 import me.matvienkoeg.recipeapp.services.RecipeService;
@@ -26,11 +31,45 @@ public class RecipeController {
     )
     @PostMapping
     public ResponseEntity<Recipe> addRecipe(@RequestBody Recipe recipe) {
-        return ResponseEntity.ok(recipeService.addRecipe(recipe));
+        Recipe recipes = recipeService.addRecipe(recipe);
+        return ResponseEntity.ok(recipes);
     }
 
     @Operation(
             summary = "Получение рецепта по id"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Рецепты найдены",
+                    content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = Recipe.class))
+                            )
+                    }
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Ошибка в параметрах запроса",
+                    content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = Recipe.class))
+                            )
+                    }
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "URL неверный или такого действия нет в веб-приложении",
+                    content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = Recipe.class))
+                            )
+                    }
+            )
+    }
     )
     @GetMapping("/{id}")
     public ResponseEntity<Recipe> getByID(@PathVariable Long id) {
@@ -48,6 +87,7 @@ public class RecipeController {
     @Operation(
             summary = "Удаление рецепта"
     )
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Recipe> delete(@PathVariable Long id) {
         return ResponseEntity.ok(recipeService.delete(id));

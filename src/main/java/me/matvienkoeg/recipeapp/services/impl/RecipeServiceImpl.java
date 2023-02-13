@@ -27,16 +27,17 @@ public class RecipeServiceImpl implements RecipeService {
         if (!validationService.validate(recipe)) {
             throw new ValidationException(recipe.toString());
         }
-        return recipes.put(lastId++, recipe);
+        recipes.put(lastId++, recipe);
+        return recipe;
     }
 
     @Override
-    public Optional<Recipe> getBiId(Long id) {
+    public Optional<Recipe> getBiId(Long lastId) {
         return Optional.ofNullable(recipes.get(lastId));
     }
 
     @Override
-    public Recipe upDate(Long id, Recipe recipe) {
+    public Recipe upDate(Long lastId, Recipe recipe) {
         if (!validationService.validate(recipe)) {
             throw new ValidationException(recipe.toString());
         }
@@ -44,7 +45,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Recipe delete(Long id) {
+    public Recipe delete(Long lastId) {
         return recipes.remove(lastId);
     }
 

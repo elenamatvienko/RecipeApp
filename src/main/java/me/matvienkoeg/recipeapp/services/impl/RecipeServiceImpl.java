@@ -43,8 +43,9 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Optional<Recipe> getBiId(Long lastId) {
-        return Optional.ofNullable(recipes.get(lastId));
+    public Recipe getBiId(Long lastId) {
+
+        return recipes.get(lastId);
     }
 
     @Override

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.matvienkoeg.recipeapp.exception.ValidationException;
 import me.matvienkoeg.recipeapp.model.Ingredient;
-import me.matvienkoeg.recipeapp.model.Recipe;
 import me.matvienkoeg.recipeapp.services.FilesIngredientService;
 import me.matvienkoeg.recipeapp.services.IngredientsService;
 import org.springframework.stereotype.Service;
@@ -45,8 +44,9 @@ public class IngredientsServiceImpl implements IngredientsService {
     }
 
     @Override
-    public Optional<Ingredient> getBiId(Long lastId) {
-        return Optional.ofNullable(ingredients.get(lastId));
+    public Ingredient getBiId(Long lastId) {
+
+        return ingredients.get(lastId);
     }
 
     @Override

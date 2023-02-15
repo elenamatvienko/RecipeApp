@@ -9,7 +9,7 @@ public interface IngredientsService {
 
     Ingredient addIngredient(Ingredient ingredient);
 
-    Optional<Ingredient> getBiId(Long id);
+    Ingredient getBiId(Long id);
 
     Ingredient upDate(Long id, Ingredient ingredient);
 

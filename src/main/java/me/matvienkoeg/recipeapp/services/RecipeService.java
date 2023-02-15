@@ -9,7 +9,7 @@ public interface RecipeService {
 
     Recipe addRecipe(Recipe recipe);
 
-    Optional<Recipe> getBiId(Long id);
+    Recipe getBiId(Long id);
 
     Recipe upDate(Long id, Recipe recipe);
 

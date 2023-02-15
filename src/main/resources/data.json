@@ -1,1 +1,1 @@
-{"1":{"title":"1","cookingTime":30,"cookingTimeUnitMeasurement":"min","numberServings":2,"numberServingsUnitMeasurement":"шт","ingredients":[{"name":"string","productQuantity":0,"unitMeasurement":"string"}],"cookingInstructions":["string"]}}
+{"1":{"title":"string","cookingTime":0,"cookingTimeUnitMeasurement":"string","numberServings":0,"numberServingsUnitMeasurement":"string","ingredients":[{"name":"string","productQuantity":0,"unitMeasurement":"string"}],"cookingInstructions":["string"]}}

@@ -18,7 +18,7 @@ import java.util.*;
 public class IngredientsServiceImpl implements IngredientsService {
     private final FilesIngredientService filesIngredientService;
 
-    private static TreeMap<Long, Ingredient> ingredients = new TreeMap<>();
+    private  Map<Long, Ingredient> ingredients = new TreeMap<>();
     private static long lastId = 1;
     private final ValidationServiceImpl validationService;
 
@@ -54,11 +54,13 @@ public class IngredientsServiceImpl implements IngredientsService {
         if (!validationService.validate(ingredient)) {
             throw new ValidationException(ingredient.toString());
         }
+        saveToFile();
         return ingredients.replace(lastId, ingredient);
     }
 
     @Override
     public Ingredient delete(Long lastId) {
+        saveToFile();
         return ingredients.remove(lastId);
     }
 
@@ -72,7 +74,7 @@ public class IngredientsServiceImpl implements IngredientsService {
             String json = new ObjectMapper().writeValueAsString(ingredients);
             filesIngredientService.saveToFile(json);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
     private void readFromFile () {
@@ -81,7 +83,7 @@ public class IngredientsServiceImpl implements IngredientsService {
             ingredients = new ObjectMapper().readValue(json, new TypeReference<TreeMap<Long, Ingredient>>() {
             });
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }

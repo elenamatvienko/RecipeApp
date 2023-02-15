@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.Map;
-import java.util.Optional;
 import java.util.TreeMap;
 
 @Service
@@ -19,7 +18,7 @@ import java.util.TreeMap;
 public class RecipeServiceImpl implements RecipeService {
     final private FilesRecipeService filesRecipeService;
 
-    private static TreeMap<Long, Recipe> recipes = new TreeMap<>();
+    private  Map<Long, Recipe> recipes = new TreeMap<>();
     private static long lastId = 1;
     private final ValidationServiceImpl validationService;
 
@@ -59,6 +58,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Recipe delete(Long lastId) {
+        saveToFile();
         return recipes.remove(lastId);
     }
 
@@ -72,7 +72,7 @@ public class RecipeServiceImpl implements RecipeService {
            String json = new ObjectMapper().writeValueAsString(recipes);
             filesRecipeService.saveToFile(json);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
     private void readFromFile () {
@@ -81,7 +81,7 @@ public class RecipeServiceImpl implements RecipeService {
             recipes = new ObjectMapper().readValue(json, new TypeReference<TreeMap<Long, Recipe>>() {
             });
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }

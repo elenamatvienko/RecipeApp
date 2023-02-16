@@ -54,14 +54,16 @@ public class IngredientsServiceImpl implements IngredientsService {
         if (!validationService.validate(ingredient)) {
             throw new ValidationException(ingredient.toString());
         }
+        ingredients.replace(lastId, ingredient);
         saveToFile();
-        return ingredients.replace(lastId, ingredient);
+        return ingredient;
     }
 
     @Override
     public Ingredient delete(Long lastId) {
+        ingredients.remove(lastId);
         saveToFile();
-        return ingredients.remove(lastId);
+        return null;
     }
 
     @Override

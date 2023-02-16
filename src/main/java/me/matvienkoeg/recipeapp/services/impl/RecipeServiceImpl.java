@@ -52,14 +52,16 @@ public class RecipeServiceImpl implements RecipeService {
         if (!validationService.validate(recipe)) {
             throw new ValidationException(recipe.toString());
         }
+        recipes.replace(lastId, recipe);
         saveToFile();
-        return recipes.replace(lastId, recipe);
+        return recipe;
     }
 
     @Override
     public Recipe delete(Long lastId) {
+        recipes.remove(lastId);
         saveToFile();
-        return recipes.remove(lastId);
+        return null;
     }
 
     @Override

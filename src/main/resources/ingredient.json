@@ -1,1 +1,7 @@
-{"1":{"name":"1","productQuantity":20,"unitMeasurement":"гр"}}
+{
+  "1": {
+    "name": "Творог",
+    "productQuantity": 350,
+    "unitMeasurement": "гр"
+  }
+}

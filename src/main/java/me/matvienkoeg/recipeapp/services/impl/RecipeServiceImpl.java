@@ -4,12 +4,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.matvienkoeg.recipeapp.exception.ValidationException;
+import me.matvienkoeg.recipeapp.model.Ingredient;
 import me.matvienkoeg.recipeapp.model.Recipe;
 import me.matvienkoeg.recipeapp.services.FilesRecipeService;
 import me.matvienkoeg.recipeapp.services.RecipeService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.*;
+import java.lang.constant.Constable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -18,7 +25,7 @@ import java.util.TreeMap;
 public class RecipeServiceImpl implements RecipeService {
     final private FilesRecipeService filesRecipeService;
 
-    private  Map<Long, Recipe> recipes = new TreeMap<>();
+    private Map<Long, Recipe> recipes = new TreeMap<>();
     private static long lastId = 1;
     private final ValidationServiceImpl validationService;
 
@@ -26,8 +33,9 @@ public class RecipeServiceImpl implements RecipeService {
         this.filesRecipeService = filesRecipeService;
         this.validationService = validationService;
     }
+
     @PostConstruct
-    private void init (){
+    private void init() {
         readFromFile();
     }
 
@@ -61,7 +69,7 @@ public class RecipeServiceImpl implements RecipeService {
     public Recipe delete(Long lastId) {
         recipes.remove(lastId);
         saveToFile();
-        return null;
+        return recipes.remove(lastId);
     }
 
     @Override
@@ -69,15 +77,18 @@ public class RecipeServiceImpl implements RecipeService {
         return recipes;
     }
 
-    private void saveToFile () {
+
+
+    private void saveToFile() {
         try {
-           String json = new ObjectMapper().writeValueAsString(recipes);
+            String json = new ObjectMapper().writeValueAsString(recipes);
             filesRecipeService.saveToFile(json);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
-    private void readFromFile () {
+
+    private void readFromFile() {
         try {
             String json = filesRecipeService.readFromFile();
             recipes = new ObjectMapper().readValue(json, new TypeReference<TreeMap<Long, Recipe>>() {
@@ -85,7 +96,9 @@ public class RecipeServiceImpl implements RecipeService {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-
     }
+
+
+
 }
 

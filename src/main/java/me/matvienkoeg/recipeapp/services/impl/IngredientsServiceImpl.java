@@ -63,7 +63,7 @@ public class IngredientsServiceImpl implements IngredientsService {
     public Ingredient delete(Long lastId) {
         ingredients.remove(lastId);
         saveToFile();
-        return null;
+        return ingredients.remove(lastId);
     }
 
     @Override

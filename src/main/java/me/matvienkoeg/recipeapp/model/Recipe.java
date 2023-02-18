@@ -1,16 +1,14 @@
 package me.matvienkoeg.recipeapp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 public class Recipe {
     private String title;
     private int cookingTime;
@@ -20,6 +18,11 @@ public class Recipe {
     private List<Ingredient> ingredients;
     private List<String> cookingInstructions;
 
-
+    public String toString() {
+        return title + "\n cookingTime: " + cookingTime +
+                "\n cookingTimeUnitMeasurement: " + cookingTimeUnitMeasurement +
+                "\n numberServings: " + numberServings +
+                "\n numberServingsUnitMeasurement: " + numberServingsUnitMeasurement;
+    }
 }
 

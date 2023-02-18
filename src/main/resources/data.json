@@ -1,1 +1,90 @@
-{"1":{"title":"string","cookingTime":0,"cookingTimeUnitMeasurement":"string","numberServings":0,"numberServingsUnitMeasurement":"string","ingredients":[{"name":"string","productQuantity":0,"unitMeasurement":"string"}],"cookingInstructions":["string"]}}
+{
+  "1": {
+    "title": "Сырники из Tворога",
+    "cookingTime": 30,
+    "cookingTimeUnitMeasurement": "мин.",
+    "numberServings": 2,
+    "numberServingsUnitMeasurement": "шт.",
+    "ingredients": [
+      {
+        "name": "Творог",
+        "productQuantity": 350,
+        "unitMeasurement": "гр."
+      },
+      {
+        "name": "Куриное яйцо",
+        "productQuantity": 2,
+        "unitMeasurement": "шт."
+      },
+      {
+        "name": "Пшеничная мука",
+        "productQuantity": 6,
+        "unitMeasurement": "ст. л."
+      },
+      {
+        "name": "Сахар",
+        "productQuantity": 2,
+        "unitMeasurement": "ст. л."
+      }
+    ],
+    "cookingInstructions": [
+      "Смешайте весь творог с яйцами, сахаром и тщательно всё перемешайте.",
+      "Всыпьте в творог муку и тщательно перемешайте.",
+      "Поставьте сковороду на средний огонь и налейте в нее подсолнечное масло.",
+      "Слепите несколько небольших шариков из получившейся творожной массы и положите их на тарелку. Затем по очереди обкатывайте творожные шарики в муке и выкладывайте на сковороду.",
+      "Обжаривайте сырники 1–2 минуты до появления золотистой корочки. Затем переверните их на другую сторону и также обжарьте до золотистого состояния.",
+      "Повторяйте, пока творог не закончится."
+    ]
+  },
+  "2": {
+    "title": "Салат с креветками и кунжутом",
+    "cookingTime": 20,
+    "cookingTimeUnitMeasurement": "мин.",
+    "numberServings": 2,
+    "numberServingsUnitMeasurement": "шт.",
+    "ingredients": [
+      {
+        "name": "Помидоры ",
+        "productQuantity": 3,
+        "unitMeasurement": "шт."
+      },
+      {
+        "name": "Королевские креветки",
+        "productQuantity": 300,
+        "unitMeasurement": "гр."
+      },
+      {
+        "name": "Зеленый салат",
+        "productQuantity": 1,
+        "unitMeasurement": "пучок"
+      },
+      {
+        "name": "Огурцы ",
+        "productQuantity": 2,
+        "unitMeasurement": "шт."
+      },
+      {
+        "name": "Специи",
+        "productQuantity": 0,
+        "unitMeasurement": "по вкусу"
+      },
+      {
+        "name": "Майонез",
+        "productQuantity": 0,
+        "unitMeasurement": "по вкусу"
+      },
+      {
+        "name": "Кунжутные семечки",
+        "productQuantity": 3,
+        "unitMeasurement": "ст. л."
+      }
+    ],
+    "cookingInstructions": [
+      "Порезать овощи крупно, салат порвать на куски.",
+      "Довести до кипения сильно соленую воду и добавить креветки. После кипения варить 5 минут.",
+      "Очистить креветки от панциря.",
+      "Смешать овощи и креветки.",
+      "Посыпать кунжутными семечками и заправить майонезом."
+    ]
+  }
+}

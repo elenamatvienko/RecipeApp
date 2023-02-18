@@ -21,5 +21,5 @@ public interface RecipeService {
     Map<Long, Recipe> getAll();
 
 
-
+    File prepareRecipesTxt() throws IOException;
 }

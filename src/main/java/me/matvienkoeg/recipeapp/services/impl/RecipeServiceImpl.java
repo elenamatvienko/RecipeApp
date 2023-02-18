@@ -8,15 +8,11 @@ import me.matvienkoeg.recipeapp.model.Ingredient;
 import me.matvienkoeg.recipeapp.model.Recipe;
 import me.matvienkoeg.recipeapp.services.FilesRecipeService;
 import me.matvienkoeg.recipeapp.services.RecipeService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.*;
-import java.lang.constant.Constable;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -33,6 +29,7 @@ public class RecipeServiceImpl implements RecipeService {
         this.filesRecipeService = filesRecipeService;
         this.validationService = validationService;
     }
+
 
     @PostConstruct
     private void init() {
@@ -97,8 +94,28 @@ public class RecipeServiceImpl implements RecipeService {
             e.printStackTrace();
         }
     }
+    @Override
+        public File prepareRecipesTxt() throws IOException {
+            return filesRecipeService.saveToTxt (recipesToString(), Path.of(filesRecipeService.getDataFilePath(), filesRecipeService.getRecipesTxtFileName())).toFile();
+        }
 
+    public  String  recipesToString() {
+        StringBuilder sb = new StringBuilder();
+        String listEl = " * ";
+        for (Recipe recipe : recipes.values()) {
+            sb.append("\n").append(recipe.toString()).append("\n");
+            sb.append("\nИнгредиенты:\n");
+            for (Ingredient ingredient : recipe.getIngredients()) {
+                sb.append(listEl).append(ingredient.toString()).append("\n");
+            }
+            sb.append("\nИнструкция приготовления:\n");
+            for (String сookingInstruction : recipe.getCookingInstructions()) {
+                sb.append(listEl).append(сookingInstruction).append("\n");
+            }
+        }
+        return sb.append("\n").toString();
 
+    }
 
 }
 

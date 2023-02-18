@@ -6,6 +6,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 public interface FilesRecipeService {
+    String getDataFilePath();
+
+    String getDataFileName();
+
+    String getRecipesTxtFileName();
+
     boolean saveToFile(String json);
 
     String readFromFile();
@@ -15,7 +21,7 @@ public interface FilesRecipeService {
 
     boolean cleanDataFile();
 
-    File prepareRecipesTxt()throws IOException;
+
 
     Path saveToTxt(String content, Path path) throws IOException;
 
